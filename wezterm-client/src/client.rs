@@ -641,7 +641,7 @@ impl Reconnectable {
             // we sent CTRL-D to close the last session, or whether it was a network
             // level disconnect, because we will otherwise throw up authentication
             // dialogs that would be annoying
-            ClientDomainConfig::Ssh(_) => false,
+            ClientDomainConfig::Ssh(_) => true,
         }
     }
 
@@ -1063,7 +1063,7 @@ impl Client {
                         if let std::io::ErrorKind::UnexpectedEof = ioerr.kind() {
                             // Don't reconnect for a simple EOF
                             log::error!("server closed connection ({})", e);
-                            break;
+                            // break;
                         }
                     }
 
